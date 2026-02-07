@@ -47,5 +47,3 @@ SEO Optimized: Meta tags and clean HTML structure for better search engine ranki
 Branding: Fully customized under the Codesphinx umbrella.
 
 Developed by Codesphinx.
-
-Bhai, Fresh Laundry SaaS ke liye tha, lekin Luxury Living Lead Generation ke liye hai. Yeh English version aapke portfolio ke liye bilkul perfect hai.
