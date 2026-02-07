@@ -30,11 +30,19 @@ const Index = () => {
   return (
     <div className="min-h-screen">
       <Hero />
-      <SearchSection onSearch={handleSearch} />
-      <FeaturedProperties filters={filters} showFiltered={isSearching} />
+      <div id="search-section">
+        <SearchSection onSearch={handleSearch} />
+      </div>
+      {/* Yahan ID "properties" add kar di hai */}
+      <section id="properties" className="scroll-mt-20">
+        <FeaturedProperties filters={filters} showFiltered={isSearching} />
+      </section>
       <Services />
       <Testimonials />
-      <Contact />
+      {/* Contact section ke liye id */}
+      <section id="contact">
+        <Contact />
+      </section>
       <Footer />
     </div>
   );
