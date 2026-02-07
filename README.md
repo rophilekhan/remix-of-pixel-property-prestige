@@ -1,73 +1,51 @@
-# Welcome to your Lovable project
+🏠 Luxury Living - Premium Real Estate Platform
+Luxury Living is a high-end Real Estate solution designed to showcase premium properties and capture high-quality leads. This platform bridges the gap between luxury property sellers and potential buyers through a sophisticated, data-driven interface.
 
-## Project info
+✨ Core Features
+🏙️ Dynamic Property Catalog: Elegant display of luxury listings with detailed specifications and high-resolution imagery.
 
-**URL**: https://lovable.dev/projects/2e943f22-e765-400c-9e97-0ce0bf7e867a
+🛠️ Admin Management Suite: A private dashboard for authorized users to manage property listings, update prices, and track status.
 
-## How can I edit this code?
+📩 Lead Capture System: Integrated contact forms that securely store inquiries directly into the Supabase database for follow-up.
 
-There are several ways of editing your application.
+🔐 Secure Access: Role-based authentication using Supabase Auth to protect the administrative backend.
 
-**Use Lovable**
+⚡ Optimized Performance: Lightning-fast page loads and smooth navigation powered by Vite and React.
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/2e943f22-e765-400c-9e97-0ce0bf7e867a) and start prompting.
+🛠️ Tech Stack
+Frontend: React.js (Vite), TypeScript, Tailwind CSS, Shadcn UI.
 
-Changes made via Lovable will be committed automatically to this repo.
+Backend & Database: Supabase (PostgreSQL) with Row Level Security (RLS).
 
-**Use your preferred IDE**
+Routing: React Router Dom with Vercel Rewrite configurations.
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+Hosting: Vercel (Production-ready deployment).
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+🚀 Installation & Local Development
+Clone the Repository:
 
-Follow these steps:
+Bash
+git clone https://github.com/rophilekhan/luxury-living.git
+Install Dependencies:
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+Bash
+npm install
+Configure Environment Variables: Create a .env file in the root directory and add your credentials:
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+Code snippet
+VITE_SUPABASE_URL=your_supabase_project_url
+VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
+Start Dev Server:
 
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+Bash
 npm run dev
-```
+📂 Project Highlights
+Lead Management: Unlike a SaaS model, this focuses on high-ticket sales through direct database inquiries.
 
-**Edit a file directly in GitHub**
+SEO Optimized: Meta tags and clean HTML structure for better search engine ranking.
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+Branding: Fully customized under the Codesphinx umbrella.
 
-**Use GitHub Codespaces**
+Developed by Codesphinx.
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/2e943f22-e765-400c-9e97-0ce0bf7e867a) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+Bhai, Fresh Laundry SaaS ke liye tha, lekin Luxury Living Lead Generation ke liye hai. Yeh English version aapke portfolio ke liye bilkul perfect hai.
