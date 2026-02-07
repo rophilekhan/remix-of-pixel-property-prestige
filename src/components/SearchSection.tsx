@@ -1,3 +1,4 @@
+import { useState, useCallback } from "react";
 import { Search, MapPin, Home, DollarSign } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -8,8 +9,34 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { PropertyFilters } from "@/hooks/useProperties";
 
-export const SearchSection = () => {
+interface SearchSectionProps {
+  onSearch?: (filters: PropertyFilters) => void;
+}
+
+export const SearchSection = ({ onSearch }: SearchSectionProps) => {
+  const [location, setLocation] = useState("");
+  const [propertyType, setPropertyType] = useState("");
+  const [priceRange, setPriceRange] = useState("");
+
+  const handleSearch = useCallback(() => {
+    onSearch?.({
+      location: location || undefined,
+      propertyType: propertyType || undefined,
+      priceRange: priceRange || undefined,
+    });
+  }, [location, propertyType, priceRange, onSearch]);
+
+  const handleQuickSearch = useCallback((tag: string) => {
+    setLocation(tag);
+    onSearch?.({
+      location: tag,
+      propertyType: propertyType || undefined,
+      priceRange: priceRange || undefined,
+    });
+  }, [propertyType, priceRange, onSearch]);
+
   return (
     <section className="py-24 bg-secondary/30">
       <div className="container mx-auto px-4">
@@ -30,15 +57,18 @@ export const SearchSection = () => {
                 <Input 
                   placeholder="Location" 
                   className="pl-10 h-12 border-border"
+                  value={location}
+                  onChange={(e) => setLocation(e.target.value)}
                 />
               </div>
               
-              <Select>
+              <Select value={propertyType} onValueChange={setPropertyType}>
                 <SelectTrigger className="h-12 border-border">
                   <Home className="w-5 h-5 text-accent mr-2" />
                   <SelectValue placeholder="Property Type" />
                 </SelectTrigger>
-                <SelectContent>
+                <SelectContent className="bg-popover">
+                  <SelectItem value="all">All Types</SelectItem>
                   <SelectItem value="villa">Villa</SelectItem>
                   <SelectItem value="penthouse">Penthouse</SelectItem>
                   <SelectItem value="apartment">Apartment</SelectItem>
@@ -46,12 +76,13 @@ export const SearchSection = () => {
                 </SelectContent>
               </Select>
               
-              <Select>
+              <Select value={priceRange} onValueChange={setPriceRange}>
                 <SelectTrigger className="h-12 border-border">
                   <DollarSign className="w-5 h-5 text-accent mr-2" />
                   <SelectValue placeholder="Price Range" />
                 </SelectTrigger>
-                <SelectContent>
+                <SelectContent className="bg-popover">
+                  <SelectItem value="all">All Prices</SelectItem>
                   <SelectItem value="1m-3m">$1M - $3M</SelectItem>
                   <SelectItem value="3m-5m">$3M - $5M</SelectItem>
                   <SelectItem value="5m-10m">$5M - $10M</SelectItem>
@@ -59,7 +90,7 @@ export const SearchSection = () => {
                 </SelectContent>
               </Select>
               
-              <Button variant="premium" size="lg" className="h-12">
+              <Button variant="premium" size="lg" className="h-12" onClick={handleSearch}>
                 <Search className="mr-2" />
                 Search
               </Button>
@@ -70,6 +101,7 @@ export const SearchSection = () => {
               {["Beach Front", "City Center", "Mountain View", "Golf Course"].map((tag) => (
                 <button
                   key={tag}
+                  onClick={() => handleQuickSearch(tag)}
                   className="px-4 py-2 rounded-full bg-secondary hover:bg-accent hover:text-primary transition-all duration-300 text-sm font-medium"
                 >
                   {tag}
