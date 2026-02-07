@@ -26,7 +26,8 @@ type FormValues = z.infer<typeof formSchema>;
 
 export const AdminLogin = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const { signIn } = useAuth();
+  const [isSignUp, setIsSignUp] = useState(false);
+  const { signIn, signUp } = useAuth();
 
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
@@ -38,15 +39,35 @@ export const AdminLogin = () => {
 
   const onSubmit = async (values: FormValues) => {
     setIsLoading(true);
-    const { error } = await signIn(values.email, values.password);
-    setIsLoading(false);
+    
+    if (isSignUp) {
+      const { error } = await signUp(values.email, values.password);
+      setIsLoading(false);
+      
+      if (error) {
+        toast({
+          title: "Sign Up Failed",
+          description: error.message,
+          variant: "destructive",
+        });
+      } else {
+        toast({
+          title: "Account Created",
+          description: "Please check your email to verify your account, then sign in.",
+        });
+        setIsSignUp(false);
+      }
+    } else {
+      const { error } = await signIn(values.email, values.password);
+      setIsLoading(false);
 
-    if (error) {
-      toast({
-        title: "Login Failed",
-        description: error.message,
-        variant: "destructive",
-      });
+      if (error) {
+        toast({
+          title: "Login Failed",
+          description: error.message,
+          variant: "destructive",
+        });
+      }
     }
   };
 
@@ -63,8 +84,12 @@ export const AdminLogin = () => {
 
         <div className="bg-card rounded-2xl shadow-xl p-8 border border-border">
           <div className="text-center mb-8">
-            <h1 className="text-3xl font-bold text-foreground mb-2">Admin Login</h1>
-            <p className="text-muted-foreground">Sign in to manage properties</p>
+            <h1 className="text-3xl font-bold text-foreground mb-2">
+              {isSignUp ? "Create Account" : "Admin Login"}
+            </h1>
+            <p className="text-muted-foreground">
+              {isSignUp ? "Sign up for admin access" : "Sign in to manage properties"}
+            </p>
           </div>
 
           <Form {...form}>
@@ -101,14 +126,24 @@ export const AdminLogin = () => {
                 {isLoading ? (
                   <>
                     <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                    Signing in...
+                    {isSignUp ? "Creating account..." : "Signing in..."}
                   </>
                 ) : (
-                  "Sign In"
+                  isSignUp ? "Create Account" : "Sign In"
                 )}
               </Button>
             </form>
           </Form>
+
+          <div className="mt-6 text-center">
+            <button
+              type="button"
+              onClick={() => setIsSignUp(!isSignUp)}
+              className="text-sm text-muted-foreground hover:text-accent transition-colors"
+            >
+              {isSignUp ? "Already have an account? Sign in" : "Need an account? Sign up"}
+            </button>
+          </div>
         </div>
       </div>
     </div>
